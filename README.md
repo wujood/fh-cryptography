@@ -6,3 +6,10 @@ Dies ist der wissenschaftliche Artikel welcher die Grundlage für das behandelte
 https://factorable.net/weakkeys12.extended.pdf
 
 Autoren: Nadia Heninger, Zakir Durumeric, Eric Wustrow, J. Alex Halderman
+
+# TODOs
+
+* Erstellen eines fehlerhaften Zufallsgenerators
+* Beispielprojekt welches demonstriert warum der obrigen Zufallsgenerator kritische Schwachstellen erzeugt
+* Statistiken des Papers auswerten
+* (optional) Server hochfahren der eine solche fehlerhafte Schlüsselgenerierung verwendet
