@@ -13,3 +13,4 @@ Autoren: Nadia Heninger, Zakir Durumeric, Eric Wustrow, J. Alex Halderman
 * Beispielprojekt welches demonstriert warum der obrigen Zufallsgenerator kritische Schwachstellen erzeugt
 * Statistiken des Papers auswerten
 * (optional) Server hochfahren der eine solche fehlerhafte Schlüsselgenerierung verwendet
+* Public keys crawlen im ldap der fh?
