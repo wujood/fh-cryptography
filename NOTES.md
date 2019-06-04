@@ -1,3 +1,5 @@
+Es folgt eine gruselige Geschichte aus dem Jahre 2012
+
 # Abstract
 * RSA und DSA können katastrophale Fehler aufweisen wenn Zufallszahlen nicht korrekt berechnet werden
 * Es wurde die größte Netzwerk "Umfrage" von TLS und SSH servern durchgeführt:
@@ -77,3 +79,72 @@
   * Jedoch ist die Sicherheit von korrekt generierten Schlüsseln vonn traditionellen PCs aus sicht der Autoren nicht gemindert
   * Es wurde zwar ein ganzt spezieller Teil der kryptographischen Algorithmen ausgenutztn, jedoch liegt die Schwachstelle eindeutig in der Implementierung
 * Abschließend machen die Authoren darauf aufmerksam dass ihre Arbeit ein Wake-Up Call für sichere Zufallsgeneratoren als ungelöstes Problem sein soll
+
+# Hintergrund
+
+## RSA Beurteilung
+
+* Öffentlicher Schlüssel besteht aus 2 Zahlen
+  * Der Exponent `e`
+  * Der Modulus `N`
+    * `N` besteht aus 2 zufällig gewählten Primzahlen `q` und `p`
+  * Der private Schlüssel ist
+    * ![Formel für d](https://latex.codecogs.com/gif.latex?d%20%3D%20e%5E%7B-1%7D%5C%20mod%5C%20%28p-1%29%28q-1%29)
+  * Ist die Faktorisierung von N möglich so kann sehr einfach der private schlüssel jedes öffentlichen Schlüssels berechnet werden
+* Faktorisierbare RSA Schlüssel
+  * Ein 1024 Bit Modulus ist bisher nicht faktorisiert worden
+  * Der größte bekannte Schlüssel war 768 Bits lang und wurde 2009 nach mehreren Jahren von einem Rechnernetzwerk faktorisiert
+  * Im Vergleich dazu kann der GGT von zwei 1024-Bit Zahlen im Bruchteil einer Sekunde berechnet werden
+  * Dies führt zu einer sehr bekannten Schwachstelle:
+   * Findet ein Angreifer zwei unterschiedliche Moduli `N1` und `N2` die einen gemeinsamen Primfaktor `p` teilen
+   * So ist der GGT von `N1` und `N2` ... *trommelwirbel* ... `p` 
+   * Teilt man `N1` und `N2` durch `p`so erhält man `q1` und `q2`
+   * Die nachfolgende Berchnung ist trivial um den privaten Schlüssel zu erstellen
+   
+## DSA Beurteilung
+
+* Besteht aus 
+  * 2 Primzahlen p und q (Domain-Parameter)
+  * 1 Generator g aus der Gruppe "q mod p" (Domain-Parameter)
+  * und ![Formel für y](https://latex.codecogs.com/gif.latex?y%20%3D%20g%5Ex%5C%20mod%20%5C%20p)
+    * `x`ist hierbei der private Schlüssel
+  * Die sog. Domain-Parameter können zzwischen mehreren öffentlichen Schlüsseln geteilt werden ohne die Sicherheit zu gefährden
+* Die Signatur besteht aus einem Zahlenpaar von `r`und `s`
+  * ![Formeln für r und s](https://latex.codecogs.com/gif.latex?r%20%3D%20g%5Ek%5C%20mod%5C%20p%5C%5C%20s%20%3D%20%28k%5E%7B-1%7D%28H%28m%29&plus;xr%29%29%5C%20mod%20%5C%20q)
+  * `k` wird hierbei zufällig gewählt und ist ein flüchtiger privater Schlüssel
+  * `H(m)` ist ein Hash der Nachricht die es zu verschlüsseln gilt
+* Die Gefahr
+  * Ist `k` bekannt so kann der private Schlüssel `x` berechnet werden
+    * ![Formel für x](https://latex.codecogs.com/gif.latex?x%20%3D%20r%5E%7B-1%7D%28ks-H%28m%29%29%5C%20mod%20%5C%20q)
+  * Noch schlimmer wird es wenn `k`doppelt verwendet wird, denn dann kann auch ohne das wissen über k der private Schlüssel berechnet werden
+    * Hierzu wird `k` zuerst mit Hilfe beider Nachrichten und den öffentlichen Schlüsseln berechnet
+    * ![Formel für k](https://latex.codecogs.com/gif.latex?k%20%3D%20%28H%28m_1%29-H%28m_2%29%29%28s_1-s_2%29%5E%7B-1%7D%5C%20mod%5C%20q)
+    * Im Anschluss kann dann mit `k` wie oben beschrieben der private Schlüssel `x`berechnet werden
+    * Hinweis hier: r1 und r2 sind laut formel durch gleiches k identisch. Es kann also dem r angesehen werden ob k mehrfach verwendet wurde
+   
+## Angriffsszenario
+TLS und SSH verwenden normalerweise RSA oder DSA zur Authorisierung zwischen Server und Client
+
+### TLS
+* Ein öffentlicher Schlüssel wird in einem TLS Zertifikat während des Handshakes übermittelt
+* Wird ein RSA Schlüsselaustausch verwendet so kann ein passiver Zuhörer mit Hilfe des privaten Schlüssels bereits alle Sessions entschlüsseln
+* Wird ein Diffie-Hellmann Schlüsselaustausch verwendet so reicht es nicht nur das Transkript der Verbindung zu erhalten
+* In beiden Fällen ist mit Hilfe des privaten Schlüssels ein aktivier Angreifer bspw als man-in-the-middle in der Lage den gesamten Datenverkehr zu entschlüsseln, zu lesen, zu manipulieren und verschlüsselt weiterzuleiten
+
+### SSH
+Hier gibt es 2 Unterscheidungen von SSH Versionen
+* SSH-1
+ * Der Client verschlüsselt Session Key Material mit dem öffentlichen Schlüssel des Servers
+* SSH-2
+ * Diffie-Hellmann Schlüsselaustausch
+ * Der Benutzer bestätigt manuell den Fingerprint des Servers bei der ersten Verbindung
+ * Die meisten Clients speichern den Schlüssel dann unter "known_hosts" und trauen dem host ab dort automatisch
+
+Die Konsequenz
+* SSH-1
+ * Ein passiver Zuhörer kann mit dem privaten Schlüssel die gesamte Session abhören
+* SSH-2
+ * Hier ist dank Diffie-Hellmann nur ein Man-in-the-Middle Angriff möglich
+ 
+Eine Zeitbombe hierbei:
+SSH überträgt nach Aufbau der vermeidlich sicheren Verbindung das vom Benutzer eingegebene Passwort im Klartext über den "sicheren" Kanal, welcher jedoch abgehört werden könnte. Dies kann selbst einem passiven Zuhörer mit genug Geduld Zugang zu dem System des Servers verschaffen.
