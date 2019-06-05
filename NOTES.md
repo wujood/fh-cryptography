@@ -148,3 +148,23 @@ Die Konsequenz
  
 Eine Zeitbombe hierbei:
 SSH überträgt nach Aufbau der vermeidlich sicheren Verbindung das vom Benutzer eingegebene Passwort im Klartext über den "sicheren" Kanal, welcher jedoch abgehört werden könnte. Dies kann selbst einem passiven Zuhörer mit genug Geduld Zugang zu dem System des Servers verschaffen.
+
+# Methodik
+
+3 Phasen bei dem Internet-Scan:
+* IPv4 Adressraum auf akzeptierende Prots 443(HTTPS) und 22(SSH) durchgegangen
+* TLS bzw. SSH Handshake mit aktiven Ports durchgeführt und Zertifikate bzw. Host Keys gespeichert
+* Parsen der Ergebnisse in eine relationale Datenbank
+
+## Hosts entdecken
+* Verwendet wurde NMap 5 ![NMap 5 Homepage](https://nmap.org/5/)
+ * SYN-Anfragen auf die prots 443 und 22
+ * SYN-ACK Rückgabe wurde verstanden als erreichbarer Host
+ * Geringe Bandbreitenauslastung
+ * Maximal 2 Pakete nötig
+* Durchgeführt auf 25 Amazon EC2 Micro Instanzen auf 5 verschiedenen EC2 Regionen
+ * Virginia, Californien, Japan, Singapore und Irland
+* 40.566 IPs/sekunde
+* 25 Stunden mit dem Ergebnis:
+ * 28.923.800 IPs auf Port 443 (06.10.2010)
+ * 23.237.081 IPs auf Port 22 (12.02.2012)
