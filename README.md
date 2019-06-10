@@ -9,10 +9,10 @@ Autoren: Nadia Heninger, Zakir Durumeric, Eric Wustrow, J. Alex Halderman
 
 # TODOs
 
-[ ] Aufteilung der Themen in Folien
-[ ] Zuweisung der Folien
-[ ] Wichtigste Fakten festhalten
-[ ] Statistiken des Papers auswerten
-[ ] Folien designen 
-[ ] (optional) Fancy Animationen
-[ ] Zeitmanagment
+ - [ ] Aufteilung der Themen in Folien
+ - [ ] Zuweisung der Folien
+ - [ ] Wichtigste Fakten festhalten
+ - [ ] Statistiken des Papers auswerten
+ - [ ] Folien designen 
+ - [ ] (optional) Fancy Animationen
+ - [ ] Zeitmanagment
