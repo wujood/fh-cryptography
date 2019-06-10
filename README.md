@@ -9,8 +9,10 @@ Autoren: Nadia Heninger, Zakir Durumeric, Eric Wustrow, J. Alex Halderman
 
 # TODOs
 
-* Erstellen eines fehlerhaften Zufallsgenerators
-* Beispielprojekt welches demonstriert warum der obrigen Zufallsgenerator kritische Schwachstellen erzeugt
-* Statistiken des Papers auswerten
-* (optional) Server hochfahren der eine solche fehlerhafte Schlüsselgenerierung verwendet
-* Public keys crawlen im ldap der fh?
+[ ] Aufteilung der Themen in Folien
+[ ] Zuweisung der Folien
+[ ] Wichtigste Fakten festhalten
+[ ] Statistiken des Papers auswerten
+[ ] Folien designen 
+[ ] (optional) Fancy Animationen
+[ ] Zeitmanagment
