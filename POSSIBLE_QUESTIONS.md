@@ -19,8 +19,13 @@
 5) Elliptische Kurven
 - Wie funktioniert ECDHE?
 - Was bedeutet [a]G? 
+  - a ist die Anzahl der Kopien eines Punktes, G ist der Punkt, [a]G nennt man Skalarmultplikation
+  - Ist der public key
 - Was ist G?
+  - Ein Punkt
 - Was ist typischerweise a?
+  - Eine große Primzahl
+  - 
 - Welche Formen von elliptischen Kurve kennen Sie (keine Gleichungen, nur Namen)?
 - Warum gibt es verschiedene Formen?
 - Welche Kurve haben Sie im Praktikum benutzt?
@@ -29,7 +34,9 @@
 - Was ist der Unterschied zwischen symmetrischer und asymmetrischer Verschlüsselung? 
 - Wofür wird symm. und asymm. Verschlüsselung verwendet? Was setzt TLS ein?
 - Welche Schlüssellängen hat AES?
+  - 128,192,256
 - Welche Blockgrößen?
+  - 128 (16 Byte)
 - Wie verschlüsselt man Nachrichten, die größer als die Blockgröße des Verschlüsselungsalgorithmus sind?
 - Was ist ECB? Ist es sicher?
 - Was ist CBC? Ist es sicher?
