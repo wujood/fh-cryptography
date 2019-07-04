@@ -8,5 +8,7 @@ https://factorable.net/weakkeys12.extended.pdf
 Autoren: Nadia Heninger, Zakir Durumeric, Eric Wustrow, J. Alex Halderman
 
 # Content
-In der POSSIBLE_QUESTIONS.md sind die Fragen die eventuell in der mündlichen Prüfung dran kommen aufgelistet und ggf. auch mit einer kurzen Notiz zur Antwort versehen
-Die NOTES.md beinhaltet Notizen zum Paper die beim lesen und vorbereiten gemacht wurden
+## POSSIBLE_QUESTIONS.md
+Hier sind die Fragen die eventuell in der mündlichen Prüfung dran kommen aufgelistet und ggf. auch mit einer kurzen Notiz zur Antwort versehen
+## NOTES.md
+Beinhaltet Notizen zum Paper die beim lesen und vorbereiten gemacht wurden
