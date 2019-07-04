@@ -12,3 +12,5 @@ Autoren: Nadia Heninger, Zakir Durumeric, Eric Wustrow, J. Alex Halderman
 Hier sind die Fragen die eventuell in der mündlichen Prüfung dran kommen aufgelistet und ggf. auch mit einer kurzen Notiz zur Antwort versehen
 ## NOTES.md
 Beinhaltet Notizen zum Paper die beim lesen und vorbereiten gemacht wurden
+## Handout_Mining_your_ps_and_qs.pdf
+Eine Zusammenfassung des bearbeiteten Themas um den Studierenden die Informationen des Vortrags schriftlich auszuhändigen
