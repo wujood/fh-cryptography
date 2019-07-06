@@ -121,11 +121,11 @@ https://www.youtube.com/watch?v=Yjrfm_oRO0w
 - TLS 1.3 lässt unter anderem aus diesem Grund nur diese Algortihmen zu
 
 ## Elliptische Kurven
-Eliptic curve cryptography ,kurz: ECC
-Kürzere Schlüssellänge erzeugt gleiche Sicherheitslevel
-256 Bit ECC == 3072 Bit RSA
-Basiert auf der "One Way" Funktion der Skalarmultiplikation
-Klassische Algorithmen werden immer leichter berechenbar, bei ECCs bleibt dieser Fortschritt aus
+- Eliptic curve cryptography ,kurz: ECC
+- Kürzere Schlüssellänge erzeugt gleiche Sicherheitslevel
+- 256 Bit ECC == 3072 Bit RSA
+- Basiert auf der "One Way" Funktion der Skalarmultiplikation
+- Klassische Algorithmen werden immer leichter berechenbar, bei ECCs bleibt dieser Fortschritt aus
 
 ### Was bedeutet [a]G? 
 - a ist der private Schlüssel von "Alice"
