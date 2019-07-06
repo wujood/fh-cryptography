@@ -125,6 +125,7 @@ Eliptic curve cryptography ,kurz: ECC
 Kürzere Schlüssellänge erzeugt gleiche Sicherheitslevel
 256 Bit ECC == 3072 Bit RSA
 Basiert auf der "One Way" Funktion der Skalarmultiplikation
+Klassische Algorithmen werden immer leichter berechenbar, bei ECCs bleibt dieser Fortschritt aus
 
 ### Was bedeutet [a]G? 
 - a ist der private Schlüssel von "Alice"
@@ -133,7 +134,8 @@ Basiert auf der "One Way" Funktion der Skalarmultiplikation
 - Ist der public key
 
 ### Was ist G?
-- Generator G ist ein Punkt der eine zyklische Untergruppe generiert
+- Generator G ist ein Punkt der eine zyklische Untergruppe von E generiert
+  - E ist die Elliptische Kurve
 
 ### Was ist n?
 - n ist die Anzahl der Elemente in der Untergruppe G. Also n = #G
@@ -166,14 +168,29 @@ https://www.youtube.com/watch?v=F3zzNa42-tQ
   - A entspricht einem Punkt auf der Kurve (x_A,y_A)
 - Beide multiplizieren den erhaltenen Punkt A/B mit ihrem privaten Schlüssel
   - P = ßA bzw P = αB
-- Die Sicherheit hierbei besteht darin, dass Eve (als passive Zuhörerin) αB als auch ßA hat, jedoch ist sie nicht in der Lage mit diesen Informationen auf P zu schließen (Disktretes Logarithmus Problem)
+- Die Sicherheit hierbei besteht darin, dass Eve (als passive Zuhörerin) αB als auch ßA hat, jedoch ist sie nicht in der Lage mit diesen Informationen auf P zu schließen (Elliptic-Curve Discrete Logarithm Problem)
 
 ### Welche Formen von elliptischen Kurve kennen Sie (keine Gleichungen, nur Namen)?
+- Weierstrass (generische Form für alle Kurven über F_p)
+- Edwards (nur anwendbar, wenn 4|#E(F_p))
+- Twisted Edwards
+- Montgomery
+- Koblitz
+- Einige Kurven sind isomorph zueinander. Z.B. Edwards -> Montgomery -> Weiserstrass
 
 ### Warum gibt es verschiedene Formen?
-
-### Welche Kurve haben Sie im Praktikum benutzt?
-Welches Praktikum? 
+- Gemeinsamkeit der Kurven:
+  - Elliptic-Curve Discrete Logarithm Problem
+  - Basepoint hat hohe prime Ordnung
+- Unterschiede in den Kurven (und auch der Grund für verschiedene Formen):
+  - Sicherheitsstandards variieren und damit auch die Komplexität der Berechnung
+    - Nicht jeder benötigt Top-Secret-Level Niveau
+    - Embedded Geräte o.ä. können eventuell höhere Niveaus nicht (schnell genug) berechnen
+  - Feature-Palette variiert
+    - Einfachheit der Addition
+    - Zugehörigkeitscheck
+    - Resistenz gegen Seitenkanäle
+    - Twist Security
 
 ## Symmetrische Verschlüsselung und Verschlüsselungsmodi:
 
@@ -184,10 +201,10 @@ Bei symmetrischer Verschlüsselung wird der gleiche Schlüssel zur ver- & entsch
 TLS setzt zum Schlüsselaustausch DH und (bei 1.2) RSA ein. Diese sind asymmetrisch und bereiten Server und Client für die symmetrische Verschlüsselung vor. Denn sobald der Schlüssel mit Hilfe der asymmetrischen Verschlüsselung ausgetauscht ist, haben beide den gleichen Schlüssel und können bspw. AES verwenden für die Datenverschlüsselung.
 
 ### Welche Schlüssellängen hat AES?
-  - 128,192,256
+128,192,256
 
 ### Welche Blockgrößen?
-  - 128 (16 Byte)
+128 (16 Byte)
 
 ### Wie verschlüsselt man Nachrichten, die größer als die Blockgröße des Verschlüsselungsalgorithmus sind?
 - Zerteilen der Nachricht in Blöcke und dann je nach Modus agieren. 
