@@ -17,6 +17,7 @@ https://www.youtube.com/watch?v=yPdJVvSyMqk
 
 ## TLS-Nachrichten, Formate, etc.
 ### Beschreiben Sie die Inhalte in den einzelnen TLS-Nachrichten, z. B. Client Hello, Certificate, Client KEX, etc.
+https://www.youtube.com/watch?v=cuR05y_2Gxc
 #### TLS 1.2
 - ClientHello: 
   - Unterstütze Ciphersuites
@@ -61,9 +62,42 @@ https://www.youtube.com/watch?v=yPdJVvSyMqk
 
 ## Schlüsselaustausch
 ### Wie funktioniert der RSA-basierte Schlüsselaustausch?
+- Alice und Bob generieren privaten und öffentlichen Schlüssel
+- Public Keys werden ausgetausch
+- Daten werden zum senden mit dem Public Key verschlüsselt
+- Privater Schlüssel kann verwendet werden um zu entschlüsseln
+#### Berechnung der Schlüssel
+- Wähle p und q Primzahlen
+- n = p*q (1. Teil des Public Keys)
+- phi(n) = (p-1)(q-1)
+- Wähle e mit ggT(E,phi(n))=1
+=> Public Key = (n,e)
+- Wähle d mit 0<d<phi(n), sodass gilt e*d kongruent zu 1 (mod phi(n))
+=> Private Key = d
+- Verschlüsseln:
+  - c = m^e mod n
+- Entschlüsseln
+  - m = c^d mod n
 ### Wie funktioniert der Diffie-Hellman-basierte Schlüsselaustausch?
+https://www.youtube.com/watch?v=Yjrfm_oRO0w
+- Alice und Bob generieren privaten Schlüssel
+- Generator g
+- Primzahl n ( 2kBit-4bit )
+- Öffentlich: g und n
+- g wird mit den privaten Schlüsseln verrechnet:  g^a mod n
+  - Werden im Anschluss ausgetauscht (öffentlich und unverschlüsselt)
+- Alice und Bob berechnen Schlüssel mit Hilfe der empfangenen Werte
+  - g^a^b mod n
 ### Wie unterscheiden sich die beiden Schlüsselaustauschverfahren aus Sicherheitssicht?
-
+- Beide stützen sich auf die schwierigkeit der Berechnung des diskreten Logarithmus
+- Im Falle von DH haben am Ende beide Parteien den gleichen Schlüssel
+  - Es gibt auch nur diesen Schlüssel
+  - Asymmetrische Verschlüsselung
+    - Man Endet jedoch mit gleichem Key für evtl. symmetrische Verschlüsselungen
+- Bei RSA existiert ein Public und ein Private Key.
+  - Public Key zum verschlüsseln
+  - Private Key zum entschlüseln
+  - Asymmetrische Verschlüsselung
 ## Forward Secrecy (FS)
 ### Was ist FS?
 ### Welche Eigenschaften hat FS?
