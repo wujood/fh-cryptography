@@ -130,21 +130,24 @@ https://www.youtube.com/watch?v=Yjrfm_oRO0w
 
 ### Was ist G?
   - Ein Punkt
-
+  
 ### Was ist typischerweise a?
-  - Eine große Primzahl
-  - 
+  - Eine große Primzahl 
+  
 ### Welche Formen von elliptischen Kurve kennen Sie (keine Gleichungen, nur Namen)?
 
 ### Warum gibt es verschiedene Formen?
 
 ### Welche Kurve haben Sie im Praktikum benutzt?
+Welches Praktikum? 
 
 ## Symmetrische Verschlüsselung und Verschlüsselungsmodi:
 
 ### Was ist der Unterschied zwischen symmetrischer und asymmetrischer Verschlüsselung? 
+Bei symmetrischer Verschlüsselung wird der gleiche Schlüssel zur ver- & entschlüsselung verwendet. Im Falle der asymmetrischen Verschlüsselung gibt es einen Schlüssel zur Verschlüsselung, welcher jedoch nicht Entschlüsseln kann. Hierfür wird dann ein weiterer Schlüssel verwendet.
 
 ### Wofür wird symm. und asymm. Verschlüsselung verwendet? Was setzt TLS ein?
+TLS setzt zum Schlüsselaustausch DH und (bei 1.2) RSA ein. Diese sind asymmetrisch und bereiten Server und Client für die symmetrische Verschlüsselung vor. Denn sobald der Schlüssel mit Hilfe der asymmetrischen Verschlüsselung ausgetauscht ist, haben beide den gleichen Schlüssel und können bspw. AES verwenden für die Datenverschlüsselung.
 
 ### Welche Schlüssellängen hat AES?
   - 128,192,256
@@ -153,40 +156,43 @@ https://www.youtube.com/watch?v=Yjrfm_oRO0w
   - 128 (16 Byte)
 
 ### Wie verschlüsselt man Nachrichten, die größer als die Blockgröße des Verschlüsselungsalgorithmus sind?
+- Zerteilen der Nachricht in Blöcke und dann je nach Modus agieren. 
+- Entweder die Blöcke werden alle gleich verschlüsselt (ECB)
+- .. oder man verkettet die Ciphertexte (CBC, CTR, GCM)
 
 ### Was ist ECB? Ist es sicher?
-  - Electronic Code Book: Nachricht in 16 Byte Blöcke schneiden und jeweils ver/entschlüsseln. Unabhängig voneinander
-  - Letzter Block wird ggf mit Padding aufgefüllt PKCS 7
-  Gleiche Klartextblöcke => Gleiche Chiffratblöcke 
+- Electronic Code Book: Nachricht in 16 Byte Blöcke schneiden und jeweils ver/entschlüsseln. Unabhängig voneinander
+- Letzter Block wird ggf mit Padding aufgefüllt PKCS 7
+- Gleiche Klartextblöcke => Gleiche Chiffratblöcke 
 
 ### Was ist CBC? Ist es sicher?
-  - Cahin Block Cipher
-  - Initialvektor (zufällig) wird mit erstem Klartextblock verXORt und verschlüsselt
-  - Chiffrat wird für nächsten Block als IV(Initialvektor) benutzt
-  - IV wird unverschlüsselt mitübertragen
-  - Entschlüsseln: Erst dec und dann XOR
+- Cahin Block Cipher
+- Initialvektor (zufällig) wird mit erstem Klartextblock verXORt und verschlüsselt
+- Chiffrat wird für nächsten Block als IV(Initialvektor) benutzt
+- IV wird unverschlüsselt mitübertragen
+- Entschlüsseln: Erst dec und dann XOR
 
 ### Was ist CTR? Ist es sicher?
- - Counter Mode
- - Stromchiffre aus Nonce (Wird mit jedem Block Hochgezählt)
- - Verschlüsselte Nonce wird mit Klartext-Block verXORt
- - Entschlüsseln genau so (auch mit der Verschlüsselung(!!) der Nonce)
- - Nonce wird mit übertragen
+- Counter Mode
+- Stromchiffre aus Nonce (Wird mit jedem Block Hochgezählt)
+- Verschlüsselte Nonce wird mit Klartext-Block verXORt
+- Entschlüsseln genau so (auch mit der Verschlüsselung(!!) der Nonce)
+- Nonce wird mit übertragen
 
 ### Was ist GCM und was ist AEAD? Ist das sicher?
-  - AEAD:
-    - Authenticated Encryption with Associated Data
-    - Entschlüsselung und Authentifizierung in einem Schritt
-    - Verhindert Padding-Oracles
-  -GCM:
-    - Galois/Counter Mode
-    - Sehr verbreitet und schnell!
-      - AES Hardwareunterstützung AES-NI
-      - Carryless Multiply
-  - AES-GCM ist schwierig zu implementieren
-  - Schwer Seitenkanäle auszuschließen
-  - Nonce-Problematik
-  - Sehr effizient auf Plattformen mit passender Hardware-Unterstützung
+- AEAD:
+  - Authenticated Encryption with Associated Data
+  - Entschlüsselung und Authentifizierung in einem Schritt
+  - Verhindert Padding-Oracles
+-GCM:
+  - Galois/Counter Mode
+  - Sehr verbreitet und schnell!
+    - AES Hardwareunterstützung AES-NI
+    - Carryless Multiply
+- AES-GCM ist schwierig zu implementieren
+- Schwer Seitenkanäle auszuschließen
+- Nonce-Problematik
+- Sehr effizient auf Plattformen mit passender Hardware-Unterstützung
     
 
 ## Hashes
