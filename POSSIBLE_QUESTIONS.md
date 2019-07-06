@@ -280,10 +280,24 @@ PKI = Public Key Infrastruktur
 Um sich als Autor einer Nachricht auszuweisen benutzt man Zertifikate. Dies schützt davor, dass sich jemand fälschlicherweise als jemand anders ausgibt. Empfänger könnnen sicher gehen dass eine Nachricht von dem Sender kommt von dem sie es erwarten. Man kann plausibel nachweisen, dass nur der Autor im besitzt des Zertifikats die Nachricht senden konnte.
 
 ### Welche Inhalte sind in einem Zertifikat?
-
+- Metadaten (zu viele um sie alle zu kennen)
+- Wichtig sind
+  - Issuer 
+  - Subject (muss in der Kette bytegenau wie der Issuer oberhalb in der Kette sein)
+  - Public Key
+  - Basic Constraints
+    - CA ( Wenn man kein CA ist kann man auch keine anderen Zertifikate ausstellen die außerhalb des Scopes sind )
+    - PathLen ( "Alles was weiter als 3 Schritte nach unten in der Hierarchie ist, ist kein gültiges Zertifikat )
+  - KeyUsage
+    - "Bin ich ein TLS Zertifikat" oder "Bin ich ein S/MIME Zertifikat"
 
 ### Wie funktioniert eine Zertifikatskette, von der CA-Root zum TLS-Leaf-Zertifikat.
-
+Es ist ein Hierarisches Vertrauensmodell. Im Endeffekt ein gerichteter Graph ohne geschlossene Pfade
+- Man kann ein Leaf-Zertifikat zurückverfolgen über die Zertifikatskette
+- Ist ein Leaf-Zertifikat zurückverfolgbar zu einem CA-Root so gilt es als vertrauenswürdig
+- Die Root-Zertifikate sind oftmals in den Clients vorinstalliert
+  - Bspw. im Browser oder Betriebssystem
+- Die Zertifikate in zwischen dem Root Zertifikat und dem Leaf Zertifikat heißen Intermediate Zertifikate
 
 ### Wie stellt man fest, dass Zertifikate authentisch sind?
 
@@ -305,8 +319,28 @@ Eine Signatur dient zur Verifizierung einer Nachricht und ist vergleichbar mit e
 - Bob entschlüsselt die Signatur und erhält dadurch den Hash der empfangenen Nachricht. Diese Nachricht hasht er jetzt auch und prüft ob er auf das gleiche Ergebnis kommt
 
 ### Was ist ASN.1 und was ist DER/BER?
+- Abstract Syntax Notation One (ASN.1)
+  - Eine beschreibende Sprache für Datenstrukturen
+  - Wird verwendet um bspw. X.509 Zertifikate zu beschreiben
+- DER/BER
+  - Basic Encoding Rules(BER)
+    - Kodierung der ASN.1 Syntax
+  - Distinguished Encoding Rules(DER)
+    - Ebenfalls eine Kodierung
+    - Untermenge von BER mit der Eigenschaft, dass diese auf Bitebene eindeutig ist
+    - Heißt dass diese Kodierung plattformübergreifend identisch bleibt
 
-
+### Wie funktioniert die Ausstellung von Zertifikaten
+- Generierung eines private Schlüssels
+- Zertifikatsanfrage generieren (Certificate Signing Request)
+  - ASN.1 Syntax
+  - Enthält public key, issuer, subject und so weiter (ohne Signatur, da noch kein Zertifikat vorhanden)
+- Die Anfrage wird vom Aussteller dann validiert
+  - Domain-Validation: Mail-Validation
+  - Mail-Validation + beliebige Prüfungsarten
+  - Extended Validation: Beinhaltet auch Dinge wie die Prüfung im Handelsregister, den Ausweis, etc. ... 
+#### Let's Encrypt
+Generiert mit Hilfe eines Programms automatisch ein gültiges Zertifikat. Programm startet zur Validierung dann einen Apache der eine bestimmte Challenge veröffentlicht. Kostet nichts. 
 
 ## Keyed Hashes und MAC
 
