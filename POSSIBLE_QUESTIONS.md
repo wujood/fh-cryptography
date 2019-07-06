@@ -58,14 +58,18 @@ https://www.youtube.com/watch?v=cuR05y_2Gxc
 - ServerHelloRetryRequest
   - Wird gesendet wenn keine Ciphersuite vom Server unterstützt wird
   - Schickt Cipersuite-Liste mit
+
 ### Welche Auswirkungen auf die Sicherheit des Protokolls hätte es, wenn man einzelne Nachrichten rausstreichen würde?
+Nicht ganz klar wie die Frage zu beantworten ist. Wahrscheinlich soll eine Diskussion über einzelne Inhalte ausgelöst werden.
 
 ## Schlüsselaustausch
+
 ### Wie funktioniert der RSA-basierte Schlüsselaustausch?
 - Alice und Bob generieren privaten und öffentlichen Schlüssel
 - Public Keys werden ausgetausch
 - Daten werden zum senden mit dem Public Key verschlüsselt
 - Privater Schlüssel kann verwendet werden um zu entschlüsseln
+
 #### Berechnung der Schlüssel
 - Wähle p und q Primzahlen
 - n = p*q (1. Teil des Public Keys)
@@ -78,6 +82,7 @@ https://www.youtube.com/watch?v=cuR05y_2Gxc
   - c = m^e mod n
 - Entschlüsseln
   - m = c^d mod n
+
 ### Wie funktioniert der Diffie-Hellman-basierte Schlüsselaustausch?
 https://www.youtube.com/watch?v=Yjrfm_oRO0w
 - Alice und Bob generieren privaten Schlüssel
@@ -88,6 +93,7 @@ https://www.youtube.com/watch?v=Yjrfm_oRO0w
   - Werden im Anschluss ausgetauscht (öffentlich und unverschlüsselt)
 - Alice und Bob berechnen Schlüssel mit Hilfe der empfangenen Werte
   - g^a^b mod n
+
 ### Wie unterscheiden sich die beiden Schlüsselaustauschverfahren aus Sicherheitssicht?
 - Beide stützen sich auf die schwierigkeit der Berechnung des diskreten Logarithmus
 - Im Falle von DH haben am Ende beide Parteien den gleichen Schlüssel
@@ -98,56 +104,75 @@ https://www.youtube.com/watch?v=Yjrfm_oRO0w
   - Public Key zum verschlüsseln
   - Private Key zum entschlüseln
   - Asymmetrische Verschlüsselung
+
 ## Forward Secrecy (FS)
+
 ### Was ist FS?
 - Forward Secrecy
 - Wird oft auch Perfect Forward Secrecy genannt
+
 ### Welche Eigenschaften hat FS?
 - Daten die mit Forward Secrecy Algorithmen verschlüsselt wurden können bei Verlust der privaten Schlüssel nicht entschlüsselt werden
 - "Forward" bedeutet dass ab dem moment wo das PMS ausgetauscht wurde, ist die Verbindung "Forward Secret"
 - DHE bspw. berechnet häufig neue zufallszahlen für das PMS was unmöglich macht den schlüssel wiederherzustellen
+
 ### Mit welchen Algorithmen wird FS erreicht?
 - DHE, ECDHE
 - TLS 1.3 lässt unter anderem aus diesem Grund nur diese Algortihmen zu
 
 ## Elliptische Kurven
+
 ### Wie funktioniert ECDHE?
+
 ### Was bedeutet [a]G? 
   - a ist die Anzahl der Kopien eines Punktes, G ist der Punkt, [a]G nennt man Skalarmultplikation
   - Ist der public key
+
 ### Was ist G?
   - Ein Punkt
+
 ### Was ist typischerweise a?
   - Eine große Primzahl
   - 
 ### Welche Formen von elliptischen Kurve kennen Sie (keine Gleichungen, nur Namen)?
+
 ### Warum gibt es verschiedene Formen?
+
 ### Welche Kurve haben Sie im Praktikum benutzt?
 
 ## Symmetrische Verschlüsselung und Verschlüsselungsmodi:
+
 ### Was ist der Unterschied zwischen symmetrischer und asymmetrischer Verschlüsselung? 
+
 ### Wofür wird symm. und asymm. Verschlüsselung verwendet? Was setzt TLS ein?
+
 ### Welche Schlüssellängen hat AES?
   - 128,192,256
+
 ### Welche Blockgrößen?
   - 128 (16 Byte)
+
 ### Wie verschlüsselt man Nachrichten, die größer als die Blockgröße des Verschlüsselungsalgorithmus sind?
+
 ### Was ist ECB? Ist es sicher?
   - Electronic Code Book: Nachricht in 16 Byte Blöcke schneiden und jeweils ver/entschlüsseln. Unabhängig voneinander
   - Letzter Block wird ggf mit Padding aufgefüllt PKCS 7
   Gleiche Klartextblöcke => Gleiche Chiffratblöcke 
+
 ### Was ist CBC? Ist es sicher?
   - Cahin Block Cipher
   - Initialvektor (zufällig) wird mit erstem Klartextblock verXORt und verschlüsselt
   - Chiffrat wird für nächsten Block als IV(Initialvektor) benutzt
   - IV wird unverschlüsselt mitübertragen
   - Entschlüsseln: Erst dec und dann XOR
+
 ### Was ist CTR? Ist es sicher?
  - Counter Mode
  - Stromchiffre aus Nonce (Wird mit jedem Block Hochgezählt)
  - Verschlüsselte Nonce wird mit Klartext-Block verXORt
  - Entschlüsseln genau so (auch mit der Verschlüsselung(!!) der Nonce)
  - Nonce wird mit übertragen
+
 ### Was ist GCM und was ist AEAD? Ist das sicher?
   - AEAD:
     - Authenticated Encryption with Associated Data
@@ -165,36 +190,70 @@ https://www.youtube.com/watch?v=Yjrfm_oRO0w
     
 
 ## Hashes
+
 ### Welche Eigenschaften haben kryptografische Hashverfahren? 
+- "One-Way"
+- Reduzieren auf eine feste Länge (Selbst mit großen Datensätzen)
+- Lawineneffekt (1 Bit flippen sorgt für völlig neues Ergebnis)
+- Kollisionsfreiheit (im Idealfall. Kann nicht gewährleistet werden)
+
 ### Was bedeutet schwache Kollisionsresistenz?
+- Wenn Nachricht m vorgegeben ist dann gibt es kein x für das gilt h(x)=h(m)
+- x sollte dabei natürlich nicht m sein
+
 ### Was bedeutet starke Kollisionsresistenz?
+- Wenn Nachrichten m und x frei wählbar sind dann findet man kein Tupel für das gilt h(m)=h(x)
+- Auch hier natürlich x != m
+
 ### Nennen Sie zwei Szenarien, bei welchen jeweils schwache/starke Kollisionsresistenz benötigt wird. 
+#### Schwache Kollisionsresistenz
+Wenn ich einen Server aufsetze der Passwörter von Nutzern gehasht speichert und ich erhalte ein eigentlich falsches Passwort aber der Hash der Passwörter ist identisch.
+
+#### Starke Kollisionsresistenz
+Bei der Generierung von 2 verschiedenen Rechnung die eine sehr unterschiedliche Summe (eine hoch die andere niedrig) haben, dann könnte man jemanden die günstige Rechnung unterschreiben lassen und die Rechnung mit der deutlich höheren Summe unterschieben.
+
 ### Welche Konstruktion nutzt z.B. SHA1? Welche Angriffe gegen SHA1 gibt es?
+https://shattered.io/
+
 
 ## Zertifikate, Zertifikatsketten und PKI
+
 ### Wofür braucht man Zertifikate?
+
 ### Welche Inhalte sind in einem Zertifikat?
+
 ### Wie funktioniert eine Zertifikatskette, von der CA-Root zum TLS-Leaf-Zertifikat.
+
 ### Wie stellt man fest, dass Zertifikate authentisch sind?
+
 ### Was ist eine digitale Signatur?
+
 ### Was ist ASN.1 und was ist DER/BER?
 
+
 ## Keyed Hashes und MAC
+
 ### Wie kann man Hashes nutzen um Authentizität zu erlangen? 
-  - Ein Hash aus Key und Plaintext ergibt eine Art Prüfsumme.
-  - Diese kann nur von dem originalen Autoren stammen und kann von dem Empfänger gegengeprüft werden
+- Ein Hash aus Key und Plaintext ergibt eine Art Prüfsumme.
+- Diese kann nur von dem originalen Autoren stammen und kann von dem Empfänger gegengeprüft werden
+
 ### Was ist ein MAC?
-  - Ein MAC ist eine Art Signatur einer Nachricht und die Quelle und Korrektheit der Nachricht zu garantieren
-  - Das Ergebnis einer Hashfunktion welche den Key und den Plaintext beinhaltet
+- Ein MAC ist eine Art Signatur einer Nachricht und die Quelle und Korrektheit der Nachricht zu garantieren
+- Das Ergebnis einer Hashfunktion welche den Key und den Plaintext beinhaltet
+
 ### Was ist ein HMAC?
+
 ### Was ist MAC-and-Encrypt?
-  - MAC mit Plaintext + Key generieren
-  - Plaintext verschlüsseln und danach MAC anhängen
+- MAC mit Plaintext + Key generieren
+- Plaintext verschlüsseln und danach MAC anhängen
+
 ### Was ist MAC-then-Encrypt?
-  - MAC wird an den Plaintext angehangen und im Anschluss gemeinsam mit dem Plaintext verschlüsselt
-  - Dadurch ist der MAC ebenfalls verschlüsselt
+- MAC wird an den Plaintext angehangen und im Anschluss gemeinsam mit dem Plaintext verschlüsselt
+- Dadurch ist der MAC ebenfalls verschlüsselt
+
 ### Was ist Encrypt-then-MAC?
-  - Erst verschlüsseln und dann Ciphertext + Key nutzen um MAC zu erstellen
+- Erst verschlüsseln und dann Ciphertext + Key nutzen um MAC zu erstellen
+
 ### Was verwendet TLS?
   - Je nach Ciphersuite
     - MAC-then-Encrypt
