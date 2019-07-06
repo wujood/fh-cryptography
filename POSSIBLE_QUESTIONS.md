@@ -13,9 +13,50 @@
 ![TLS 1.2](https://tlseminar.github.io/images/firstfew/tls-hs-ecdhe.png)
 #### TLS 1.3
 ![TLS 1.3](https://timtaubert.de/images/tls13-hs-ecdhe.png)
+https://www.youtube.com/watch?v=yPdJVvSyMqk
 
 ## TLS-Nachrichten, Formate, etc.
 ### Beschreiben Sie die Inhalte in den einzelnen TLS-Nachrichten, z. B. Client Hello, Certificate, Client KEX, etc.
+#### TLS 1.2
+- ClientHello: 
+  - Unterstütze Ciphersuites
+  - Versionsnummer
+- ServerHello:
+  - Wählt erstmal Ciphersuite aus die genutzt werden soll
+  - Enthält Zertifikat
+    - Enthält wiederum den Pubic Key für die Verschlüsselung
+  - Enthält Ciphersuite
+- ServerHelloDone
+- Client generiert Pre-Master Secret (PMS)
+- Client Key Exchange + Change Cipher Spec
+  - Sendet PMS verschlüsselt (mit hilfe des Public Keys) an Server
+- ClientFinished
+- Server kann den Key Exchange entschlüssen und nun haben beide das gleiche PMS
+  - Ab hier ist verschlüsselung möglich da beide einen symmetrischen Schlüssel haben
+- Server Change Cipher Spec
+- Server Finished
+- Application Data kann verschlüsselt übertragen werden
+  - "Bulk Data"
+
+#### TLS 1.3
+- ClientHello
+  - Versionsnummer
+  - Unterstütze Chipersuites
+  - Key Agreements TODO: Klären
+  - Keyshare: Vorberechnete Keys für die unterstützen Ciphersuites
+- ServerHello
+  - Gibt die Ciphersuite an
+  - Schickt Keyshare mit
+  - Server kann an dieser Stelle verschlüsseln
+  - Zertifikat wird mit übertragen
+  - Finished Nachricht kann auch direkt mitgesendet werden
+- ClientFinished
+  - Fnished
+  - Kann ab hier auch verschlüsseln
+  - Application Data
+- ServerHelloRetryRequest
+  - Wird gesendet wenn keine Ciphersuite vom Server unterstützt wird
+  - Schickt Cipersuite-Liste mit
 ### Welche Auswirkungen auf die Sicherheit des Protokolls hätte es, wenn man einzelne Nachrichten rausstreichen würde?
 
 ## Schlüsselaustausch
