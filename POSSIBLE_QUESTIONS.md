@@ -121,19 +121,53 @@ https://www.youtube.com/watch?v=Yjrfm_oRO0w
 - TLS 1.3 lässt unter anderem aus diesem Grund nur diese Algortihmen zu
 
 ## Elliptische Kurven
-
-### Wie funktioniert ECDHE?
+Eliptic curve cryptography ,kurz: ECC
+Kürzere Schlüssellänge erzeugt gleiche Sicherheitslevel
+256 Bit ECC == 3072 Bit RSA
+Basiert auf der "One Way" Funktion der Skalarmultiplikation
 
 ### Was bedeutet [a]G? 
-  - a ist die Anzahl der Kopien eines Punktes, G ist der Punkt, [a]G nennt man Skalarmultplikation
-  - Ist der public key
+- a ist der private Schlüssel von "Alice"
+- a ist in der Berechnung die Anzahl der Multiplikator eines Punktes G
+- [a]G nennt man Skalarmultplikation und stellt den öffentlichen Schlüssel von "Alice" dar
+- Ist der public key
 
 ### Was ist G?
-  - Ein Punkt
-  
+- Generator G ist ein Punkt der eine zyklische Untergruppe generiert
+
+### Was ist n?
+- n ist die Anzahl der Elemente in der Untergruppe G. Also n = #G
+
+### Was ist h?
+- Im Klartext: Die Anzahl der Punkte auf der Kurve geteilt durch die Anzahl der Punkte in der Untergruppe G
+- Idealerweise ist h = 1
+- h > 4 ist nicht anstrebenswert
+
+### Domain Parameter {p,a,b,G,n,h} ?
+- p ist das Feld (Es wird immer mod p gerechnet)
+- a,b sind die Kurvenparameter
+- G s.o.
+- n s.o.
+- h s.o.
+
 ### Was ist typischerweise a?
-  - Eine große Primzahl 
-  
+  - Eine große Primzahl
+  - Der private Schlüssel von "Alice" (siehe oben)
+
+### Wie funktioniert ECDHE?
+https://www.youtube.com/watch?v=F3zzNa42-tQ
+- Es gibt vorgegebene Kurven. Eine dieser Kurven wird gewählt. Diese nennt man E
+- Bob wählt einen privaten Schlüssel ß mit  1≤ß≤n-1
+  - Er berechnet dann B = ßG
+- Alice wählt einen privaten Schlüssel α mit  1≤α≤n-1
+  - Sie berechnet dann A = αG
+- Alice und Bob tauschen A und B aus (unverschlüsselt)
+  - B entspricht einem Punkt auf der Kurve (x_B,y_B)
+  - A entspricht einem Punkt auf der Kurve (x_A,y_A)
+- Beide multiplizieren den erhaltenen Punkt A/B mit ihrem privaten Schlüssel
+  - P = ßA bzw P = αB
+- Die Sicherheit hierbei besteht darin, dass Eve (als passive Zuhörerin) αB als auch ßA hat, jedoch ist sie nicht in der Lage mit diesen Informationen auf P zu schließen (Disktretes Logarithmus Problem)
+
 ### Welche Formen von elliptischen Kurve kennen Sie (keine Gleichungen, nur Namen)?
 
 ### Warum gibt es verschiedene Formen?
