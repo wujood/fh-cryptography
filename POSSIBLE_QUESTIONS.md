@@ -100,8 +100,15 @@ https://www.youtube.com/watch?v=Yjrfm_oRO0w
   - Asymmetrische Verschlüsselung
 ## Forward Secrecy (FS)
 ### Was ist FS?
+- Forward Secrecy
+- Wird oft auch Perfect Forward Secrecy genannt
 ### Welche Eigenschaften hat FS?
+- Daten die mit Forward Secrecy Algorithmen verschlüsselt wurden können bei Verlust der privaten Schlüssel nicht entschlüsselt werden
+- "Forward" bedeutet dass ab dem moment wo das PMS ausgetauscht wurde, ist die Verbindung "Forward Secret"
+- DHE bspw. berechnet häufig neue zufallszahlen für das PMS was unmöglich macht den schlüssel wiederherzustellen
 ### Mit welchen Algorithmen wird FS erreicht?
+- DHE, ECDHE
+- TLS 1.3 lässt unter anderem aus diesem Grund nur diese Algortihmen zu
 
 ## Elliptische Kurven
 ### Wie funktioniert ECDHE?
