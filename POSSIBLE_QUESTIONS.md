@@ -1,6 +1,11 @@
 # Mögliche Fragen in der mndl. Prüfung
 ## Transport Layer Security
 - Was bedeutet ECDHE-RSA-AES128-GCM-SHA256?
+  - Ist eine Ciphersuite mit folgenden Eigenschaften:
+    - Schlüsselaustausch mit ECDHE
+    - Authentifizierung mit RSA
+    - AES128-GCM für Datenverschlüsselung 
+    - SHA256 als Hashfunktion
 - Beschreiben Sie den TLS Handshake und die ausgetauschten Nachrichten.
 
 ## TLS-Nachrichten, Formate, etc.
