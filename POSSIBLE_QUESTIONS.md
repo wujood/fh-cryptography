@@ -274,18 +274,38 @@ https://shattered.io/
 
 
 ## Zertifikate, Zertifikatsketten und PKI
+PKI = Public Key Infrastruktur
 
 ### Wofür braucht man Zertifikate?
+Um sich als Autor einer Nachricht auszuweisen benutzt man Zertifikate. Dies schützt davor, dass sich jemand fälschlicherweise als jemand anders ausgibt. Empfänger könnnen sicher gehen dass eine Nachricht von dem Sender kommt von dem sie es erwarten. Man kann plausibel nachweisen, dass nur der Autor im besitzt des Zertifikats die Nachricht senden konnte.
 
 ### Welche Inhalte sind in einem Zertifikat?
 
+
 ### Wie funktioniert eine Zertifikatskette, von der CA-Root zum TLS-Leaf-Zertifikat.
+
 
 ### Wie stellt man fest, dass Zertifikate authentisch sind?
 
+
 ### Was ist eine digitale Signatur?
+Eine Signatur dient zur Verifizierung einer Nachricht und ist vergleichbar mit einer Unterschrift auf einem Dokument mit dem zusätzlichen Effekt, dass eine digitale Signatur nicht nur aus einem geheimen Schlüssel (als Metapher die Unterschrift in diesem Fall) sondern auch aus der Nachricht besteht.
+
+### Wie läuft das Signaturverfahren ab?
+- Es existiert ein Funktins-Tripel E=(KGen, Sign, Verify)
+  - KGen berechnet unter Einfluss von zufall den öffentlichen und privaten Schlüssel
+  - Sign signiert eine Nachricht unter Einbezug des privaten Schlüssels
+  - Verify gibt an, ob eine erhaltene Nachricht mit der Signatur und dem öffentlichen Schlüssel verifiziert werden kann (true/false)
+- Signatur wird mit Secret Key erstellt (Dabei fließt natürlich die Nachricht ebenfalls mit ein)
+  - Geprüft wird also mit einem Public Key
+
+#### Mit RSA
+- Alice hasht ihre Nachricht und verschlüsselt sie mit eigenem privaten Schlüssel
+- Sie hängt diese Signatur an ihre Nachricht an (da ja der private schlüssel zum VERschlüsseln benutzt wurde kann man nun, anders als sonst, mit Hilfe des öffentlichen Schlüssel die Signatur entschlüsseln)
+- Bob entschlüsselt die Signatur und erhält dadurch den Hash der empfangenen Nachricht. Diese Nachricht hasht er jetzt auch und prüft ob er auf das gleiche Ergebnis kommt
 
 ### Was ist ASN.1 und was ist DER/BER?
+
 
 
 ## Keyed Hashes und MAC
