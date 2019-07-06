@@ -1,22 +1,23 @@
-1) Transport Layer Security
+# Mögliche Fragen in der mndl. Prüfung
+## Transport Layer Security
 - Was bedeutet ECDHE-RSA-AES128-GCM-SHA256?
 - Beschreiben Sie den TLS Handshake und die ausgetauschten Nachrichten.
 
-2) TLS-Nachrichten, Formate, etc.
+## TLS-Nachrichten, Formate, etc.
 - Beschreiben Sie die Inhalte in den einzelnen TLS-Nachrichten, z. B. Client Hello, Certificate, Client KEX, etc.
 - Welche Auswirkungen auf die Sicherheit des Protokolls hätte es, wenn man einzelne Nachrichten rausstreichen würde?
 
-3) Schlüsselaustausch
+## Schlüsselaustausch
 - Wie funktioniert der RSA-basierte Schlüsselaustausch?
 - Wie funktioniert der Diffie-Hellman-basierte Schlüsselaustausch?
 - Wie unterscheiden sich die beiden Schlüsselaustauschverfahren aus Sicherheitssicht?
 
-4) Forward Secrecy (FS)
+## Forward Secrecy (FS)
 - Was ist FS?
 - Welche Eigenschaften hat FS?
 - Mit welchen Algorithmen wird FS erreicht?
 
-5) Elliptische Kurven
+## Elliptische Kurven
 - Wie funktioniert ECDHE?
 - Was bedeutet [a]G? 
   - a ist die Anzahl der Kopien eines Punktes, G ist der Punkt, [a]G nennt man Skalarmultplikation
@@ -30,7 +31,7 @@
 - Warum gibt es verschiedene Formen?
 - Welche Kurve haben Sie im Praktikum benutzt?
 
-6) Symmetrische Verschlüsselung und Verschlüsselungsmodi:
+## Symmetrische Verschlüsselung und Verschlüsselungsmodi:
 - Was ist der Unterschied zwischen symmetrischer und asymmetrischer Verschlüsselung? 
 - Wofür wird symm. und asymm. Verschlüsselung verwendet? Was setzt TLS ein?
 - Welche Schlüssellängen hat AES?
@@ -70,14 +71,14 @@
   - Sehr effizient auf Plattformen mit passender Hardware-Unterstützung
     
 
-7) Hashes
+## Hashes
 - Welche Eigenschaften haben kryptografische Hashverfahren? 
 - Was bedeutet schwache Kollisionsresistenz?
 - Was bedeutet starke Kollisionsresistenz?
 - Nennen Sie zwei Szenarien, bei welchen jeweils schwache/starke Kollisionsresistenz benötigt wird. 
 - Welche Konstruktion nutzt z.B. SHA1? Welche Angriffe gegen SHA1 gibt es?
 
-8) Zertifikate, Zertifikatsketten und PKI
+## Zertifikate, Zertifikatsketten und PKI
 - Wofür braucht man Zertifikate?
 - Welche Inhalte sind in einem Zertifikat?
 - Wie funktioniert eine Zertifikatskette, von der CA-Root zum TLS-Leaf-Zertifikat.
@@ -85,7 +86,7 @@
 - Was ist eine digitale Signatur?
 - Was ist ASN.1 und was ist DER/BER?
 
-9) Keyed Hashes und MAC
+## Keyed Hashes und MAC
 - Wie kann man Hashes nutzen um Authentizität zu erlangen? 
   - Ein Hash aus Key und Plaintext ergibt eine Art Prüfsumme.
   - Diese kann nur von dem originalen Autoren stammen und kann von dem Empfänger gegengeprüft werden
@@ -108,6 +109,6 @@
   - MAC-then-encrypt führt immer wieder zu Problemen
   - Enrypt-then-MAC ist das was man machen möchte (Ciphertext soll authentisch sein)
 
-10) Spezielle Frage(n) zu bearbeiteten Thema.
+## Spezielle Frage(n) zu bearbeiteten Thema.
 
-11) Allgemeine Frage(n) zu einem anderen Thema.
+## Allgemeine Frage(n) zu einem anderen Thema.
