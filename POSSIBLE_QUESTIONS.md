@@ -31,6 +31,7 @@ https://www.youtube.com/watch?v=cuR05y_2Gxc
     - Enthält wiederum den Pubic Key für die Verschlüsselung
   - Enthält Ciphersuite
 - ServerHelloDone
+  - Leere Nachricht
 - Client generiert Pre-Master Secret (PMS)
 - Client Key Exchange + Change Cipher Spec
   - Sendet PMS verschlüsselt (mit hilfe des Public Keys) an Server
