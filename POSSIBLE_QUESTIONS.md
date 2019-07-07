@@ -1,4 +1,7 @@
 # Mögliche Fragen in der mndl. Prüfung
+
+Wenn vor einer Frage ein 🍀 zu sehen ist, dann ist die Frage nicht im originalen Fragenkatalog gewesen.
+
 ## Transport Layer Security
 
 ### Was bedeutet ECDHE-RSA-AES128-GCM-SHA256?
@@ -70,7 +73,7 @@ Nicht ganz klar wie die Frage zu beantworten ist. Wahrscheinlich soll eine Disku
 - Daten werden zum senden mit dem Public Key verschlüsselt
 - Privater Schlüssel kann verwendet werden um zu entschlüsseln
 
-#### Berechnung der Schlüssel
+#### Berechnung des Schlüssel
 - Wähle p und q Primzahlen
 - n = p*q (1. Teil des Public Keys)
 - phi(n) = (p-1)(q-1)
@@ -137,15 +140,15 @@ https://www.youtube.com/watch?v=Yjrfm_oRO0w
 - Generator G ist ein Punkt der eine zyklische Untergruppe von E generiert
   - E ist die Elliptische Kurve
 
-### Was ist n?
+### 🍀 Was ist n?
 - n ist die Anzahl der Elemente in der Untergruppe G. Also n = #G
 
-### Was ist h?
+### 🍀 Was ist h?
 - Im Klartext: Die Anzahl der Punkte auf der Kurve geteilt durch die Anzahl der Punkte in der Untergruppe G
 - Idealerweise ist h = 1
 - h > 4 ist nicht anstrebenswert
 
-### Domain Parameter {p,a,b,G,n,h} ?
+### 🍀 Domain Parameter {p,a,b,G,n,h} ?
 - p ist das Feld (Es wird immer mod p gerechnet)
 - a,b sind die Kurvenparameter
 - G s.o.
@@ -153,10 +156,12 @@ https://www.youtube.com/watch?v=Yjrfm_oRO0w
 - h s.o.
 
 ### Was ist typischerweise a?
-  - Eine große Primzahl
-  - Der private Schlüssel von "Alice" (siehe oben)
+- Der erste Kurvenparameter
+Falls hier klein Alpha(α) gemeint ist:
+- Eine große Primzahl
+- Der private Schlüssel von "Alice" (siehe oben)
 
-### Wie funktioniert ECDHE?
+###🍀 Wie funktioniert ECDHE?
 https://www.youtube.com/watch?v=F3zzNa42-tQ
 - Es gibt vorgegebene Kurven. Eine dieser Kurven wird gewählt. Diese nennt man E
 - Bob wählt einen privaten Schlüssel ß mit  1≤ß≤n-1
@@ -244,7 +249,6 @@ TLS setzt zum Schlüsselaustausch DH und (bei 1.2) RSA ein. Diese sind asymmetri
 - Schwer Seitenkanäle auszuschließen
 - Nonce-Problematik
 - Sehr effizient auf Plattformen mit passender Hardware-Unterstützung
-    
 
 ## Hashes
 
@@ -301,7 +305,6 @@ Es ist ein Hierarisches Vertrauensmodell. Im Endeffekt ein gerichteter Graph ohn
 
 ### Wie stellt man fest, dass Zertifikate authentisch sind?
 
-
 ### Was ist eine digitale Signatur?
 Eine Signatur dient zur Verifizierung einer Nachricht und ist vergleichbar mit einer Unterschrift auf einem Dokument mit dem zusätzlichen Effekt, dass eine digitale Signatur nicht nur aus einem geheimen Schlüssel (als Metapher die Unterschrift in diesem Fall) sondern auch aus der Nachricht besteht.
 
@@ -330,7 +333,7 @@ Eine Signatur dient zur Verifizierung einer Nachricht und ist vergleichbar mit e
     - Untermenge von BER mit der Eigenschaft, dass diese auf Bitebene eindeutig ist
     - Heißt dass diese Kodierung plattformübergreifend identisch bleibt
 
-### Wie funktioniert die Ausstellung von Zertifikaten
+###🍀 Wie funktioniert die Ausstellung von Zertifikaten
 - Generierung eines private Schlüssels
 - Zertifikatsanfrage generieren (Certificate Signing Request)
   - ASN.1 Syntax
