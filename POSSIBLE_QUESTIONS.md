@@ -162,9 +162,9 @@ https://www.youtube.com/watch?v=Yjrfm_oRO0w
 
 ### Was ist typischerweise a?
 - Der erste Kurvenparameter
-Falls hier klein Alpha(α) gemeint ist:
-- Eine große Primzahl
-- Der private Schlüssel von "Alice" (siehe oben)
+- Falls hier klein Alpha(α) gemeint ist:
+  - Eine große Primzahl
+  - Der private Schlüssel von "Alice" (siehe oben)
 
 ### 🍀 Wie funktioniert ECDHE?
 https://www.youtube.com/watch?v=F3zzNa42-tQ
