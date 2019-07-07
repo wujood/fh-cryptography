@@ -41,7 +41,11 @@ https://www.youtube.com/watch?v=cuR05y_2Gxc
 - Server Finished
 - Application Data kann verschlüsselt übertragen werden
   - "Bulk Data"
-
+##### Session Resumption
+- ClientHello
+- ServerHello, ChangeChipherSpec, Finished
+- ChangeChipherSpec, Finished
+- Im Finished wird der Session-Key erneut verwendet und dadurch ist ausgeschlossen dass ein Angreifer mit einem Session-Ticket eine Verbindung im namen seines Opfers öffnet
 #### TLS 1.3
 - ClientHello
   - Versionsnummer
