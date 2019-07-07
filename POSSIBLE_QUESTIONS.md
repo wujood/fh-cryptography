@@ -161,7 +161,7 @@ Falls hier klein Alpha(α) gemeint ist:
 - Eine große Primzahl
 - Der private Schlüssel von "Alice" (siehe oben)
 
-###🍀 Wie funktioniert ECDHE?
+### 🍀 Wie funktioniert ECDHE?
 https://www.youtube.com/watch?v=F3zzNa42-tQ
 - Es gibt vorgegebene Kurven. Eine dieser Kurven wird gewählt. Diese nennt man E
 - Bob wählt einen privaten Schlüssel ß mit  1≤ß≤n-1
@@ -333,7 +333,7 @@ Eine Signatur dient zur Verifizierung einer Nachricht und ist vergleichbar mit e
     - Untermenge von BER mit der Eigenschaft, dass diese auf Bitebene eindeutig ist
     - Heißt dass diese Kodierung plattformübergreifend identisch bleibt
 
-###🍀 Wie funktioniert die Ausstellung von Zertifikaten
+### 🍀 Wie funktioniert die Ausstellung von Zertifikaten
 - Generierung eines private Schlüssels
 - Zertifikatsanfrage generieren (Certificate Signing Request)
   - ASN.1 Syntax
