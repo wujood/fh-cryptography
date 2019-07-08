@@ -280,7 +280,8 @@ Bei der Generierung von 2 verschiedenen Rechnung die eine sehr unterschiedliche 
 
 ### Welche Konstruktion nutzt z.B. SHA1? Welche Angriffe gegen SHA1 gibt es?
 https://shattered.io/
-
+![Merkle-Damgard](https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/MerkleDamgard.svg/2880px-MerkleDamgard.svg.png)
+SHA1, MD5, SHA2 nutzen alle die Merkle-Damgard Konstruktion (https://de.wikipedia.org/wiki/Merkles_Meta-Verfahren). Hierbei ist eine Manipulation mit Hilfe des Extension Angriffs möglich. (https://de.wikipedia.org/wiki/Merkles_Meta-Verfahren#Schw%C3%A4chen)
 
 ## Zertifikate, Zertifikatsketten und PKI
 PKI = Public Key Infrastruktur
